@@ -7,9 +7,13 @@ public class video7 {
             }
             System.out.print("factorial value of " + n + " is " + fact);
         }
+        else{
+            System.out.print("enter valid input");
+            return;
+        }
     }
     public static void main(String[] args) {
-        int n= 4;
+        int n= -4;
         factorial(n);
     }
 }
