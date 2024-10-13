@@ -1,3 +1,5 @@
+import java.util.HashSet;
+
 public class video18 {
     // // 1. Tower of Hanoi -> time complexity = O(2^n)
     // public static void towerOfHanoi(int n, String src, String hel, String dest) {
@@ -100,25 +102,90 @@ public class video18 {
     //     moveX(0, str, 0,"");
     // }
 
-    // 6. Remove duplicates in a string time complexity= O(n), where n is string length (****)
-    public static boolean[] map= new boolean[26];
-    public static void remDuplicates(int idx, String str, String newStr){
+    // // 6. Remove duplicates in a string time complexity= O(n), where n is string length (****)
+    // public static boolean[] map= new boolean[26];
+    // public static void remDuplicates(int idx, String str, String newStr){
+    //     if (idx==str.length()) {
+    //         System.out.println(newStr);
+    //         return;
+    //     }
+    //     char currChar= str.charAt(idx);
+    //     if (map[currChar-'a']) {
+    //         remDuplicates(idx+1, str, newStr);
+    //     }
+    //     else{
+    //         newStr+= currChar;
+    //         map[currChar-'a']= true;
+    //         remDuplicates(idx+1, str, newStr);
+    //     }
+    // }
+    // public static void main(String[] args) {
+    //     String str= "agsaasdadfsasssa";
+    //     remDuplicates(0, str, "");        
+    // }
+
+    // // 6. print all the subsequences of the string (***)
+    // // time complexity (watch video) => O(2^n) 
+    // public static void subsequences(int idx, String str, String newStr){
+    //     if (idx==str.length()) {
+    //         System.out.println(newStr);
+    //         return;            
+    //     }
+    //     char currChar= str.charAt(idx);
+    //     //to be included
+    //     subsequences(idx+1, str, newStr+currChar);
+
+    //     //not to be included
+    //     subsequences(idx+1, str, newStr);
+    // }
+    // public static void main(String[] args) {
+    //     String str= "abc";
+    //     subsequences(0, str, "");
+    // }
+
+    // // 8. print unique subsequences of string.
+    // // Hashset will contain unique elements.
+    // public static void subsequences(int idx, String str, String newStr, HashSet<String> set){
+    //     if (idx==str.length()) {
+    //         if (set.contains(newStr)) {
+    //             return;
+    //         }
+    //         else{
+    //             System.out.println(newStr);
+    //             set.add(newStr);
+    //             return;            
+    //         }
+    //     }
+    //     char currChar= str.charAt(idx);
+    //     //to be included
+    //     subsequences(idx+1, str, newStr+currChar,set);
+
+    //     //not to be included
+    //     subsequences(idx+1, str, newStr,set);
+    // }
+    // public static void main(String[] args) {
+    //     String str= "aaa";
+    //     HashSet<String> set= new HashSet<>();
+    //     subsequences(0, str, "", set);
+    // }
+
+    // 9. print keypad combination
+    public static String[] keypad= {".", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tu", "vwx", "yz"};
+    public static void keypadCombination(int idx, String str, String combination){
         if (idx==str.length()) {
-            System.out.println(newStr);
+            System.out.println(combination);
             return;
         }
         char currChar= str.charAt(idx);
-        if (map[currChar-'a']) {
-            remDuplicates(idx+1, str, newStr);
-        }
-        else{
-            newStr+= currChar;
-            map[currChar-'a']= true;
-            remDuplicates(idx+1, str, newStr);
-        }
+        String mapping= keypad[currChar-'0']; //gives mapping currChar     
+        for(int i=0; i<mapping.length(); i++){
+            keypadCombination(idx+1, str, combination+mapping.charAt(i));
+        }   
     }
     public static void main(String[] args) {
-        String str= "agsaasdadfsasssa";
-        remDuplicates(0, str, "");        
+        String str= "23";
+        keypadCombination(0, str, "");
     }
+
+    
 }
