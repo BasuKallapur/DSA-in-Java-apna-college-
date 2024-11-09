@@ -13,7 +13,7 @@ public class video7 {
         }
     }
     public static void main(String[] args) {
-        int n= -4;
+        int n= 4;
         factorial(n);
     }
 }
